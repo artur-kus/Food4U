@@ -17,15 +17,22 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="categories: ${listCategories}">
             <td th:text="${categories.getId()}"></td>
             <td th:text="${categories.getName()}"></td>
+            <td>
+                <a th:href="@{'/categories/edit/' + ${categories.id}}">Edit</a>
+                &nbsp
+                <a th:href="@{'/categories/delete/' + ${categories.id}}">Delete</a>
+          </td>
         </tr>
         </tbody>
     </table>
+
     <a class="btn btn-primary" href="categories/new" role="button">Add Category</a>
 </div>
 </body>

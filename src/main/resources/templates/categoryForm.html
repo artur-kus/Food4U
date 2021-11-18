@@ -9,14 +9,15 @@
 <body>
 <div th:insert="navbar.html"></div>
 <div class="container text-center">
-    <div class="p-2">
-        <h2 class="text-primary">Create New Category</h2>
-    </div>
+    <div th:if="${category.id == null}"><h2 class="text-primary">Create New Category</h2></div>
+    <div th:unless="${category.id == null}"><h2 class="text-primary">Edit Category</h2></div>
+
 </div>
 
 <div class="container text-center">
     <form th:action="@{/categories/save}" th:object="${category}" method="post"
           style="max-width: 600px; margin: 0 auto">
+        <input type="hidden" th:value="*{id}" th:field="*{id}"/>
         <div class="m-1">
             <div class="form-group row">
                 <div class="align-content-lg-center">
