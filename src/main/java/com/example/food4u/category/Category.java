@@ -21,9 +21,11 @@ public class Category {
     private Long id;
     @Column(length = 64, nullable = false, unique = true)
     private String name;
-    @OneToMany
-    @JoinColumn(name = "category_id")
-    private List<Ingredient> ingredient = new ArrayList<>();
+    @ManyToMany
+    private List<Ingredient> ingredient;
+
+    @OneToMany(mappedBy = "category")
+    private List<RelationWithIngredients> catAndIng;
 
     public Category(Long id) {
         this.id = id;
