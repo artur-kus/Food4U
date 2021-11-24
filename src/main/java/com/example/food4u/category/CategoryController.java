@@ -1,49 +1,56 @@
 package com.example.food4u.category;
 
+import com.example.food4u.integrient.Ingredient;
+import com.example.food4u.integrient.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 
     @Autowired
-    private CategoryRepository repository;
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @GetMapping
     public String listCategories(Model model){
-        List<Category> list = repository.findAll();
+        List<Category> list = categoryRepository.findAll();
         model.addAttribute("listCategories", list);
         return "categories";
     }
 
     @GetMapping("/new")
     public String showCategoryForm(Model model){
+        List<Ingredient> ingredientsList = ingredientRepository.findAll();
         model.addAttribute("category", new Category());
+        model.addAttribute("listIngredients", ingredientsList);
         return "categoryForm";
     }
 
     @PostMapping("/save")
     public String saveCategory(Category category){
-        repository.save(category);
+        categoryRepository.save(category);
         return "redirect:/categories";
     }
 
     @GetMapping("/edit/{id}")
     public String editCategory(@PathVariable("id") Long id, Model model){
-        Category category = repository.findById(id).orElseThrow(CategoryNotFoundException::new);
+        List<Ingredient> ingredientsList = ingredientRepository.findAll();
+        Category category = categoryRepository.findById(id).orElseThrow(CategoryNotFoundException::new);
         model.addAttribute("category", category);
+        model.addAttribute("listIngredients", ingredientsList);
         return "categoryForm";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
-    repository.deleteById(id);
+    categoryRepository.deleteById(id);
         return "redirect:/categories";
     }
 

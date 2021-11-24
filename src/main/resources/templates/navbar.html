@@ -42,12 +42,22 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{/ingredients}" id="ingredientsDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Ingredient
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" th:href="@{/ingredients}">View all ingredients</a></li>
+                        <li><a class="dropdown-item" th:href="@{/ingredients/new}">Add another ingredients</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" th:href="@{/categories}" id="categoriesDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Category
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" th:href="@{/categories}">View all Categories</a></li>
+                        <li><a class="dropdown-item" th:href="@{/categories}">View all categories</a></li>
                         <li><a class="dropdown-item" th:href="@{/categories/new}">Add another category</a></li>
                     </ul>
                 </li>

@@ -18,6 +18,7 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Ingredients</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
             <th scope="col">Actions</th>
@@ -29,7 +30,8 @@
             <td th:text="${product.getId()}"></td>
             <td th:text="${product.getName()}"></td>
             <td th:text="${product.getDescription()}"></td>
-            <td th:text="${product.getCategory().getName()}"></td>
+            <td th:text="${product.category.getIngredient()}"></td>
+            <td th:text="${product.category.getName()}"></td>
             <td th:text="${product.getPrice()}"></td>
             <td>
                 <a th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
