@@ -2,7 +2,7 @@ package com.example.food4u.product;
 
 import com.example.food4u.category.Category;
 import com.example.food4u.category.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +14,15 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final ProductService productService;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("")
     public String listProducts(Model model) {
-        List<Product> productList = productRepository.findAll();
+        List<Product> productList = productService.findAllProducts();
         model.addAttribute("listProducts", productList);
         return "products";
     }
@@ -39,14 +37,14 @@ public class ProductController {
 
     @PostMapping("/save")
     public String saveProduct(Product product) {
-        productRepository.save(product);
+        productService.addProduct(product);
         return "redirect:/products";
     }
 
     @GetMapping("/edit/{id}")
     public String editProduct(@PathVariable("id") Long id, Model model){
         List<Category> categoryList = categoryRepository.findAll();
-        Product product = productRepository.findById(id).get();
+        Product product = productService.findProductById(id);
         model.addAttribute("listCategories", categoryList);
         model.addAttribute("product", product);
         return "productForm";
@@ -54,7 +52,7 @@ public class ProductController {
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
-        productRepository.deleteById(id);
+       productService.deleteProductById(id);
         return "redirect:/products";
     }
 }

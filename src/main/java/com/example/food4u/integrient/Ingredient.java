@@ -1,7 +1,6 @@
 package com.example.food4u.integrient;
 
 import com.example.food4u.category.Category;
-import com.example.food4u.category.RelationWithIngredients;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,14 +21,11 @@ public class Ingredient {
     private String name;
     @ManyToMany
     @JoinTable(
-            name= "ingredients_category",
+            name= "category_ingredient",
             joinColumns = @JoinColumn(name = "ingredient_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> category;
-
-    @OneToMany(mappedBy = "ingredient")
-    private List<RelationWithIngredients> catAndIng;
 
     @Override
     public String toString() {

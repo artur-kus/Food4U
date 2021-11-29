@@ -45,7 +45,7 @@ public class IngredientController {
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
         ingredientRepository.deleteById(id);
-        return "redirect:/categories";
+        return "redirect:/ingredients";
     }
 
     @ExceptionHandler(IngredientNotFoundException.class)

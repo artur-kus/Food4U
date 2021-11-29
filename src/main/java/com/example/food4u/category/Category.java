@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,8 +22,6 @@ public class Category {
     @ManyToMany
     private List<Ingredient> ingredient;
 
-    @OneToMany(mappedBy = "category")
-    private List<RelationWithIngredients> catAndIng;
 
     public Category(Long id) {
         this.id = id;

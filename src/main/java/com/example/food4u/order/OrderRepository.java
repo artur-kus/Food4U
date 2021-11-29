@@ -1,8 +1,8 @@
-package com.example.food4u.product;
+package com.example.food4u.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface OrderRepository extends JpaRepository<PlacedOrder, Long> {
 }
