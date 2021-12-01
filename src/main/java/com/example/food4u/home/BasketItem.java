@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "basket_item")
 public class BasketItem {
     @Id

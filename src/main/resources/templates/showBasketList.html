@@ -9,6 +9,12 @@
 <body>
 <div th:insert="navbar.html"></div>
 <div class="container text-center">
+
+    <div th:if="${basketList.size() == 0}">
+        <h2 class="text-primary">Your basket is clear, make Order 🍔</h2>
+    </div>
+
+    <div th:if="${basketList.size() > 0}">
     <div class="p-2">
         <h2 class="text-secondary">Basket List</h2>
     </div>
@@ -27,17 +33,25 @@
         </tr>
         </tbody>
     </table>
-    <a class="btn btn-primary" href="menu" role="button">Add another product</a>
+        <div class="right">
+            <label class="col-form-label-lg"> Total price: </label>
+            <td th:text="${sumPrice}"> </td>
+        </div>
+        </div>
 
-    <a class="btn btn-primary" href="send" role="button">Confirm order</a>
+    <div th:if="${basketList.size() > 0}">
+        <a class="btn btn-primary" href="menu" role="button">Add another product</a>
+        <a class="btn btn-primary" href="send" role="button">Confirm order</a>
+        <a class="btn btn-primary"
+           href="basket/clear"
+           role="button"
+           th:onclick="if(!(confirm('Are you sure you want to clear your basket?') )) return false">
+            Clear basket
+        </a>
+    </div>
 
-    <a class="btn btn-primary"
-       href="basket/clear"
-       role="button"
-       th:onclick="if(!(confirm('Are you sure you want to clear your basket?') )) return false" >
-        Clear basket
-    </a>
-</div>
+    <div th:if="${basketList.size() == 0}">
+        <a class="btn btn-primary" href="menu" role="button">Add product</a>
 </div>
 </body>
 </html>

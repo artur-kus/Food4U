@@ -28,7 +28,7 @@
                 <th:block th:text="'Category:' + ${chooseProduct.getCategory().getName()}"/>
             </div>
             <div>
-            <input type="text" th:field="*{product.id}" th:value="${productId}" class="form-check-input"
+            <input type="hidden" name="productId" th:value="${chooseProduct.getId()}" class="form-check-input"
                    th:required="required" />
             </div>
 
